@@ -56,6 +56,8 @@ def load_generic_audio(directory, sample_rate):
         else:
             # The file name matches the pattern for containing ids.
             category_id = int(ids[0][0])
+        #print(filename)
+        #print(sample_rate)
         audio, _ = librosa.load(filename, sr=sample_rate, mono=True)
         audio = audio.reshape(-1, 1)
         yield audio, filename, category_id

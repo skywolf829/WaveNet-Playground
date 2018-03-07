@@ -1,0 +1,1 @@
+python train.py --restore_from=logdir/train/40000 --silence_threshold=0.1 --data_dir=corpus --checkpoint_every=1000 --gc_channels=32
