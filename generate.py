@@ -122,8 +122,7 @@ def create_seed(filename,
                 window_size,
                 silence_threshold=SILENCE_THRESHOLD):
     audio, _ = librosa.load(filename, sr=sample_rate, mono=True)
-    audio = audio_reader.trim_silence(audio, silence_threshold)
-
+    #audio = audio_reader.trim_silence(audio, silence_threshold)
     quantized = mu_law_encode(audio, quantization_channels)
     cut_index = tf.cond(tf.size(quantized) < tf.constant(window_size),
                         lambda: tf.size(quantized),
@@ -204,7 +203,7 @@ def main():
                         print('Priming sample {}'.format(i))
                     sess.run(outputs, feed_dict={samples: x})
                 print('Done.')
-
+            print(waveform)
             last_sample_timestamp = datetime.now()
             for step in range(args.samples):
                 if args.fast_generation:
